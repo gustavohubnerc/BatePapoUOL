@@ -1,0 +1,66 @@
+body {
+    background-color: #E5E5E5;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: 375px;
+    height: 660px;
+}
+
+header {
+    width: 375px;
+    height: 80px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0  22px 0 22px;
+}
+    
+#people, #send_message {
+    font-size: 45px;
+}
+
+.content {
+    width: 375px;
+    height: 500px;
+}
+
+footer {
+    width: 375px;
+    height: 80px;
+    background-color: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0  22px 0 22px;
+}
+
+.typing_pad {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+
+    border: none;
+
+    margin-top: 10px;
+}
+
+.message_box {
+    position: absolute;
+    width: 375px;
+    height: auto;
+
+    background: #FFFFFF;
+    border-radius: 2px;
+}
