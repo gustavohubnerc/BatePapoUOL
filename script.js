@@ -70,27 +70,32 @@ function message(answer) {
 }
 
 function render_messages(list_messages) {
-    let new_message = document.querySelector('.content');
-    if (!new_message) {
-      console.log('Error: could not find message container');
-      return;
-    }
-  
-    for (let i = 0; i < list_messages.length; i++) {
-      let last_message = list_messages[i];
-      last_messages.push(last_message);
-  
-      if (equal_messages(last_messages[last_messages.length - 2], last_messages[last_messages.length - 1])) {
-        if (last_message.type === 'status') {
-          new_message.innerHTML += status_message(last_message);
-        }
-        else if (last_message.type === 'message' && last_message.to === "Todos") { // adicionada verificação do tipo e destinatário da mensagem
-          new_message.innerHTML += text_message(last_message);
-        }
+  let new_message = document.querySelector('.content');
+  if (!new_message) {
+    console.log('Error: could not find message container');
+    return;
+  }
+
+  new_message.innerHTML = '';
+
+  let messages = list_messages.slice(-100);
+
+
+  for (let i = 0; i < messages.length; i++) {
+    let last_message = list_messages[i];
+    last_messages.push(last_message);
+
+    if (equal_messages(last_messages[last_messages.length - 2], last_messages[last_messages.length - 1])) {
+      if (last_message.type === 'status') {
+        new_message.innerHTML += status_message(last_message);
+      }
+      else if (last_message.type === 'message' && last_message.to === "Todos") { // adicionada verificação do tipo e destinatário da mensagem
+        new_message.innerHTML += text_message(last_message);
       }
     }
-    new_message.lastElementChild.scrollIntoView();
   }
+  new_message.lastElementChild.scrollIntoView();
+}
 
 function send_message() {
   let message_content = document.querySelector('.typing_pad').value;
@@ -100,7 +105,7 @@ function send_message() {
     text: `${message_content}`,
     type: "message"
   };
-  const request = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages?limit=100', new_message);
+  const request = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', new_message);
 
   request.then(answer_arrived);
   request.catch(error);
@@ -124,7 +129,7 @@ function equal_messages(msg1, msg2){
 }
 
 function status_message(last_message){
-    return`<li class='status_msg'><span class='time'>(${last_message.time})</span><span class='user'>&nbsp${last_message.from}</span><p>&nbsp${last_message.text}</p></li>`;
+    return`<li class='status_msg' data-test="message"><span class='time'>(${last_message.time})</span><span class='user'>&nbsp${last_message.from}</span><p>&nbsp${last_message.text}</p></li>`;
 }
 
 function text_message(last_message){
