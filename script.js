@@ -100,7 +100,7 @@ function send_message() {
     text: `${message_content}`,
     type: "message"
   };
-  const request = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', new_message);
+  const request = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages?limit=100', new_message);
 
   request.then(answer_arrived);
   request.catch(error);
