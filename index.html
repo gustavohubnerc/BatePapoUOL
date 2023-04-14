@@ -20,11 +20,11 @@
         <img class="logo" src="./assets/logo 1.png">
         <ion-icon id="people" name="people-outline"></ion-icon>
       </header>
-      <ul class="content">
+      <ul class="content" data-test="message">
       </ul>
       <footer>
-          <textarea rows = "3" cols ="35" type = "text" class = "typing_pad" placeholder="Escreva aqui..."></textarea>        
-          <ion-icon id="send_message" name="paper-plane-outline" onclick="send_message()"></ion-icon>     
+          <textarea data-test = "input-message" rows = "3" cols ="35" type = "text" class = "typing_pad" placeholder="Escreva aqui..."></textarea>        
+          <ion-icon data-test = "send-message" id="send_message" name="paper-plane-outline" onclick="send_message()"></ion-icon>     
       </footer> 
     </div> 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
