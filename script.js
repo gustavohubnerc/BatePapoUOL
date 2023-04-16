@@ -94,7 +94,6 @@ function render_messages(list_messages) {
       }
     }
   }
-  new_message.lastElementChild.scrollIntoView();
 }
 
 function send_message() {
@@ -111,7 +110,7 @@ function send_message() {
   request.catch(error);
 }
 
-function answer_arrived(sent) {
+function answer_arrived() {
   search_messages();
 }
 
