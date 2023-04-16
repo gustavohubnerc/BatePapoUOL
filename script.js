@@ -12,17 +12,17 @@ function new_user() {
   const promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', object_users);
   promise.then(joined_server);
   promise.catch(not_joined_server);
-}
-
-
-function joined_server() {
-  search_messages();
   const status_check = setInterval(check_status, 5000); //checar status a cada 5 seg
   const new_messages_check = setInterval(search_messages, 3000); //checar novas msgs a cada 3 seg
   return status_check, new_messages_check;
+
 }
 
-const intervals = joined_server();
+const intervals = new_user();
+
+function joined_server() {
+  search_messages();
+}
 
 function not_joined_server(error) {
   if (error.response.status === 400) {
