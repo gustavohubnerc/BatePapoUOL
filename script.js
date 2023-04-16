@@ -14,7 +14,7 @@ function new_user() {
   promise.catch(not_joined_server);
   const status_check = setInterval(check_status, 5000); //checar status a cada 5 seg
   const new_messages_check = setInterval(search_messages, 3000); //checar novas msgs a cada 3 seg
-  return [status_check, new_messages_check];
+  return status_check, new_messages_check;
 
 }
 
@@ -111,7 +111,7 @@ function send_message() {
   request.catch(error);
 }
 
-function answer_arrived() {
+function answer_arrived(sent) {
   search_messages();
 }
 
@@ -133,5 +133,5 @@ function status_message(last_message){
 }
 
 function text_message(last_message){
-    return `<li class='msg'><span class='time'>(${last_message.time})</span><span class='user'>&nbsp${last_message.from}</span>&nbsppara<span class='user'>&nbsp${last_message.to}:</span><p>&nbsp${last_message.text}</p></li>`;
+    return `<li class='msg' data-test="message"><span class='time'>(${last_message.time})</span><span class='user'>&nbsp${last_message.from}</span>&nbsppara<span class='user'>&nbsp${last_message.to}:</span><p>&nbsp${last_message.text}</p></li>`;
 }
