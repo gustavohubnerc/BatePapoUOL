@@ -55,9 +55,9 @@ function offline(error) {
   window.location.reload();
 }
 
-function search_messages() {
+function search_messages(type = null) {
   const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
-  promessa.then(message);
+  promessa.then(answer => message(answer.data, type));
   promessa.catch(fail_message);
 }
 
@@ -65,8 +65,9 @@ function fail_message(error) {
   console.log(error);
 }
 
-function message(answer) {
-  render_messages(answer.data);
+function message(answer, type) {
+  let filtered_messages = answer.filter((msg) => (msg.type === 'status' || msg.type === 'message') && (!type || msg.type === type));
+  render_messages(filtered_messages);
 }
 
 function render_messages(list_messages) {
@@ -80,7 +81,6 @@ function render_messages(list_messages) {
 
   let messages = list_messages.slice(-100);
 
-
   for (let i = 0; i < messages.length; i++) {
     let last_message = list_messages[i];
     last_messages.push(last_message);
@@ -89,7 +89,7 @@ function render_messages(list_messages) {
       if (last_message.type === 'status') {
         new_message.innerHTML += status_message(last_message);
       }
-      else if (last_message.type === 'message' && last_message.to === "Todos") { // adicionada verificação do tipo e destinatário da mensagem
+      else if (last_message.type === 'message' && last_message.to === "Todos") {
         new_message.innerHTML += text_message(last_message);
       }
     }
